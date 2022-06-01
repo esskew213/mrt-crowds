@@ -34,7 +34,7 @@ const Switch = ({
       variant='standard'
       sx={{ m: 1, minWidth: 120, maxWidth: 800 }}
     >
-      <InputLabel id='mrt-line-label'>MRT Line</InputLabel>
+      <InputLabel id='mrt-line-label'>Select your MRT line</InputLabel>
       <Select
         labelId='mrt-line-select-label'
         id='mrt-line-select'
