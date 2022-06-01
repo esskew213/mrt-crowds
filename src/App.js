@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Switch from './components/Switch';
+import { Typography } from '@mui/material';
 import MapComponent from './mapComponents/MapComponent';
 import { getMRTLines } from './supabase_calls/getMRTLines';
 import { retrieveDateFromDatabase } from './supabase_calls/checkDataOutdated';
@@ -41,16 +42,21 @@ function App() {
 
   return (
     <div className='App'>
-      <h1>How crowded is your MRT?</h1>
+      <Typography variant='h4'>How crowded is your MRT?</Typography>
       {lastUpdated && (
-        <p>
+        <Typography variant='body2' color='textSecondary'>
           Last updated at{' '}
           {lastUpdated?.toLocaleDateString('en-GB', {
             hour: 'numeric',
             minute: 'numeric',
           })}
-        </p>
+        </Typography>
       )}
+      <Typography variant='body1'>
+        This app displays MRT platform crowd data pulled from LTA Data mall
+        every hour. Select your line of interest to see how crowded the stations
+        are!
+      </Typography>
       <Switch
         allLines={allLines}
         setAllLines={setAllLines}
