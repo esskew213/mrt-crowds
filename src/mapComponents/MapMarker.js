@@ -2,21 +2,7 @@ import { Marker } from '@react-google-maps/api';
 import React, { useState } from 'react';
 import MapInfoBox from './MapInfoBox';
 
-const crowdednessConverter = (code) => {
-  switch (code) {
-    case 'l':
-      return 'green';
-
-    case 'm':
-      return 'orange';
-
-    case 'h':
-      return 'red';
-
-    default:
-      return 'black';
-  }
-};
+const colorMap = { l: 'green', m: 'orange', h: 'red' };
 
 const MapMarker = ({
   position = {
@@ -33,11 +19,11 @@ const MapMarker = ({
   };
   const svgMarker = {
     path: window.google.maps.SymbolPath.CIRCLE,
-    fillColor: 'transparent',
+    fillColor: colorMap[crowdLevel] || 'black',
     fillOpacity: 1,
-    strokeWeight: 4,
-    strokeColor: crowdednessConverter(crowdLevel),
-    scale: 5,
+    strokeWeight: 2,
+    strokeColor: 'white',
+    scale: 7,
   };
   return (
     <>
