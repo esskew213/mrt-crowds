@@ -31,6 +31,9 @@ const MapMarker = ({
         position={position}
         onClick={toggleInfoBoxOpen}
         icon={svgMarker}
+        onPositionChanged={() => {
+          setIsInfoBoxOpen(false);
+        }}
       />
       {isInfoBoxOpen && (
         <MapInfoBox position={position} name={name} code={code} />
