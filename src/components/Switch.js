@@ -3,20 +3,29 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { getMRTLines } from '../supabase_calls/getMRTLines';
+import { retrieveFromDatabase } from '../supabase_calls/retrieveFromDatabase';
 
-const Switch = () => {
-  const [allLines, setAllLines] = useState([]);
-  const [selectedLine, setSelectedLine] = useState('');
-  useEffect(() => {
-    getMRTLines().then((data) => {
-      const lines = data.map((l) => l['mrt_line']);
-      setAllLines(lines);
-    });
-  }, []);
-
-  const handleChange = (event) => {
+const Switch = ({
+  selectedLine,
+  setSelectedLine,
+  allLines = [],
+  setAllLines,
+  setCrowdData,
+  isLoading,
+  setIsLoading,
+}) => {
+  const handleChange = async (event) => {
     setSelectedLine(event.target.value);
+    try {
+      await retrieveFromDatabase(event.target.value).then((data) => {
+        console.log(data);
+        setCrowdData(data);
+      });
+    } catch (err) {
+      console.log(err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -28,6 +37,7 @@ const Switch = () => {
         value={selectedLine}
         onChange={handleChange}
         label='MRT Line'
+        disabled={isLoading}
       >
         <MenuItem value=''>
           <em>None</em>
