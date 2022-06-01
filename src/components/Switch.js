@@ -18,7 +18,7 @@ const Switch = ({
     setSelectedLine(event.target.value);
     try {
       await retrieveFromDatabase(event.target.value).then((data) => {
-        console.log(data);
+        console.log('retrieved', data);
         setCrowdData(data);
       });
     } catch (err) {
@@ -29,7 +29,11 @@ const Switch = ({
   };
 
   return (
-    <FormControl fullWidth variant='standard' sx={{ m: 1, minWidth: 120 }}>
+    <FormControl
+      fullWidth
+      variant='standard'
+      sx={{ m: 1, minWidth: 120, maxWidth: 800 }}
+    >
       <InputLabel id='mrt-line-label'>MRT Line</InputLabel>
       <Select
         labelId='mrt-line-select-label'
@@ -39,9 +43,9 @@ const Switch = ({
         label='MRT Line'
         disabled={isLoading}
       >
-        <MenuItem value=''>
+        {/* <MenuItem value=''>
           <em>None</em>
-        </MenuItem>
+        </MenuItem> */}
         {allLines &&
           allLines.map((line, idx) => {
             return (

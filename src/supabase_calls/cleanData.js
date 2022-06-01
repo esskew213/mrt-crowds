@@ -1,4 +1,5 @@
 export const cleanData = (arr) => {
+  console.log(arr);
   const cleanedData = arr.map((el) => {
     const obj = {};
     obj.stn_code = el.Station;

@@ -12,8 +12,7 @@ export const getCrowdData = async (line) => {
     await fetch(proxy + baseURL + line, config)
       .then((res) => res.json())
       .then(({ value }) => cleanData(value))
-      .then((cleanedData) => updateDatabase(cleanedData))
-      .then((res) => console.log(res));
+      .then((cleanedData) => updateDatabase(cleanedData));
   } catch (err) {
     console.log(err);
   }

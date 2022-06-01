@@ -14,23 +14,7 @@ const center = {
   lng: 103.82,
 };
 
-function MapComponent({
-  crowdData = [
-    {
-      crowd_level: 'l',
-      id: 186,
-      retrieved_at: '2022-05-30T13:40:00+00:00',
-      stn_code: 'NE10',
-      stations: {
-        stn_name: 'Potong Pasir',
-        stn_code: 'NE10',
-        mrt_line: 'NEL',
-        lat: 1.331316,
-        lng: 103.868779,
-      },
-    },
-  ],
-}) {
+function MapComponent({ crowdData = [] }) {
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,

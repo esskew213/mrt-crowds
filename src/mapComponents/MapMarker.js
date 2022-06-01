@@ -27,7 +27,6 @@ const MapMarker = ({
   code = '',
   crowdLevel = 'l',
 }) => {
-  console.log('CROWD', crowdLevel);
   const [isInfoBoxOpen, setIsInfoBoxOpen] = useState(false);
   const toggleInfoBoxOpen = () => {
     setIsInfoBoxOpen((prevState) => !prevState);
