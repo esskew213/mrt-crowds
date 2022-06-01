@@ -38,20 +38,20 @@ function App() {
         setLastUpdated(new Date(dateStr))
       );
     }
-  }, [allLines]);
+  }, [allLines, selectedLine]);
 
   return (
     <div className='App'>
       <Typography variant='h4'>How crowded is your MRT?</Typography>
-      {lastUpdated && (
-        <Typography variant='body2' color='textSecondary'>
-          Last updated at{' '}
-          {lastUpdated?.toLocaleDateString('en-GB', {
+      <Typography variant='body2' color='textSecondary'>
+        Last updated at{' '}
+        {lastUpdated &&
+          lastUpdated?.toLocaleDateString('en-GB', {
             hour: 'numeric',
             minute: 'numeric',
           })}
-        </Typography>
-      )}
+      </Typography>
+
       <Typography variant='body1'>
         This app displays MRT platform crowd data pulled from LTA Data mall
         every hour. Select your line of interest to see how crowded the stations
